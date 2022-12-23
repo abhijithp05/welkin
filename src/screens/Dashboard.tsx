@@ -9,7 +9,18 @@ import { ITaskDetail } from "../interfaces/ITaskDetail";
 
 export const Dashboard = () => {
   const [tableData, setTableData] = useState(mockTableData);
+  const [selectedTask, setSelectedTask] = useState<number[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleSelectedTask = (e: any) => {
+    const { checked, name } = e?.target || {};
+    const id = Number(name);
+
+    setSelectedTask((prevSelect) => {
+      if (checked) return [...prevSelect, id];
+      else return prevSelect.filter((item) => item !== id);
+    });
+  };
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -27,9 +38,23 @@ export const Dashboard = () => {
     setIsModalOpen(() => false);
   };
 
+  const handleDeleteTask = () => {
+    setTableData((prevTable) =>
+      prevTable.filter(
+        (item: ITaskDetail) => !selectedTask.includes(item.serialNo)
+      )
+    );
+  };
+
   return (
     <div style={DashboardContainer}>
-      <Table tableList={tableData} tableHeaders={tasktableHeaders} />
+      <Table
+        tableList={tableData}
+        tableHeaders={tasktableHeaders}
+        selectedTask={selectedTask}
+        onCheckChecbox={handleSelectedTask}
+        showCheckbox
+      />
       <Modal
         open={isModalOpen}
         handleClose={handleModalClose}
@@ -40,6 +65,15 @@ export const Dashboard = () => {
           <AddTask onSubmitClick={addTask} />
         </>
       </Modal>
+      {selectedTask?.length > 0 && (
+        <Button
+          style={AddTaskModalButton}
+          variant="contained"
+          onClick={handleDeleteTask}
+        >
+          Delete Selected Task
+        </Button>
+      )}
       <Button
         style={AddTaskModalButton}
         variant="contained"

@@ -11,10 +11,19 @@ import { ITaskDetail } from "../../interfaces/ITaskDetail";
 interface ITableProps extends TableProps {
   tableList: ITaskDetail[];
   tableHeaders: string[];
+  selectedTask?: number[];
+  showCheckbox?: boolean;
+  onCheckChecbox: (e: any) => void;
 }
 
 export const Table: React.FC<ITableProps> = (props): JSX.Element => {
-  const { tableHeaders, tableList } = props;
+  const {
+    tableHeaders,
+    tableList,
+    showCheckbox = false,
+    onCheckChecbox,
+    selectedTask = [],
+  } = props;
 
   return (
     <TableContainer component={Paper}>
@@ -32,6 +41,14 @@ export const Table: React.FC<ITableProps> = (props): JSX.Element => {
               key={row.serialNo}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
+              {showCheckbox && (
+                <input
+                  type="checkbox"
+                  name={String(row.serialNo)}
+                  onClick={onCheckChecbox}
+                  checked={selectedTask.includes(row.serialNo)}
+                />
+              )}
               {Object.values(row)?.map((item, index) => (
                 <TableCell key={index}>{item}</TableCell>
               ))}
