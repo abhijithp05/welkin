@@ -151,7 +151,6 @@ export const Dashboard: React.FC = (): JSX.Element => {
         >
           Download as CSV
         </Button>
-        tableToCSV
       </div>
     </div>
   );
