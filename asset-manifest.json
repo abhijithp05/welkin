@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/welkin/static/css/main.10830ef7.css",
-    "main.js": "/welkin/static/js/main.55d3d178.js",
+    "main.js": "/welkin/static/js/main.6bae0a93.js",
     "static/js/787.14fb4f97.chunk.js": "/welkin/static/js/787.14fb4f97.chunk.js",
     "index.html": "/welkin/index.html",
     "main.10830ef7.css.map": "/welkin/static/css/main.10830ef7.css.map",
-    "main.55d3d178.js.map": "/welkin/static/js/main.55d3d178.js.map",
+    "main.6bae0a93.js.map": "/welkin/static/js/main.6bae0a93.js.map",
     "787.14fb4f97.chunk.js.map": "/welkin/static/js/787.14fb4f97.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.10830ef7.css",
-    "static/js/main.55d3d178.js"
+    "static/js/main.6bae0a93.js"
   ]
 }
