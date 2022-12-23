@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 
 export const DashboardContainer: CSSProperties = {
-  width: "80%",
+  width: "90%",
   height: "auto",
   padding: 10,
   display: "flex",
@@ -18,8 +18,10 @@ export const AddTaskForm: CSSProperties = {
 
 export const AddTaskModalButton: CSSProperties = {
   display: "flex",
-  alignSelf: "center",
-  width: "50%",
+  flexDirection: "row",
+  justifyContent: "space-around",
+  gap: 20,
+  width: "80%",
 };
 
 export const AddTaskButton: CSSProperties = {

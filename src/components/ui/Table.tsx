@@ -30,6 +30,16 @@ export const Table: React.FC<ITableProps> = (props): JSX.Element => {
       <MuiTable sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
+            {showCheckbox && (
+              <TableCell>
+                <input
+                  type="checkbox"
+                  name="all"
+                  onClick={onCheckChecbox}
+                  checked={selectedTask.length === tableList.length}
+                />
+              </TableCell>
+            )}
             {tableHeaders?.map((item: string) => (
               <TableCell key={item}>{item}</TableCell>
             ))}
@@ -42,12 +52,14 @@ export const Table: React.FC<ITableProps> = (props): JSX.Element => {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               {showCheckbox && (
-                <input
-                  type="checkbox"
-                  name={String(row.serialNo)}
-                  onClick={onCheckChecbox}
-                  checked={selectedTask.includes(row.serialNo)}
-                />
+                <TableCell>
+                  <input
+                    type="checkbox"
+                    name={String(row.serialNo)}
+                    onClick={onCheckChecbox}
+                    checked={selectedTask.includes(row.serialNo)}
+                  />
+                </TableCell>
               )}
               {Object.values(row)?.map((item, index) => (
                 <TableCell key={index}>{item}</TableCell>

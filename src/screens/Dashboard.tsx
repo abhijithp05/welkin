@@ -7,8 +7,8 @@ import { Table } from "../components/ui/Table";
 import { mockTableData, tasktableHeaders } from "../constants";
 import { ITaskDetail } from "../interfaces/ITaskDetail";
 
-export const Dashboard = () => {
-  const [tableData, setTableData] = useState(mockTableData);
+export const Dashboard: React.FC = (): JSX.Element => {
+  const [tableData, setTableData] = useState<ITaskDetail[]>(mockTableData);
   const [selectedTask, setSelectedTask] = useState<number[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -17,7 +17,14 @@ export const Dashboard = () => {
     const id = Number(name);
 
     setSelectedTask((prevSelect) => {
-      if (checked) return [...prevSelect, id];
+      if (name === "all")
+        return checked
+          ? tableData?.reduce(
+              (curr: number[], item) => [...curr, item.serialNo],
+              []
+            )
+          : [];
+      else if (checked) return [...prevSelect, id];
       else return prevSelect.filter((item) => item !== id);
     });
   };
@@ -65,22 +72,24 @@ export const Dashboard = () => {
           <AddTask onSubmitClick={addTask} />
         </>
       </Modal>
-      {selectedTask?.length > 0 && (
+      <div style={AddTaskModalButton}>
+        {selectedTask?.length > 0 && (
+          <Button
+            style={{ width: "40%" }}
+            variant="contained"
+            onClick={handleDeleteTask}
+          >
+            Delete Selected Task
+          </Button>
+        )}
         <Button
-          style={AddTaskModalButton}
+          style={{ width: "40%" }}
           variant="contained"
-          onClick={handleDeleteTask}
+          onClick={handleModalOpen}
         >
-          Delete Selected Task
+          Add Task
         </Button>
-      )}
-      <Button
-        style={AddTaskModalButton}
-        variant="contained"
-        onClick={handleModalOpen}
-      >
-        Add Task
-      </Button>
+      </div>
     </div>
   );
 };

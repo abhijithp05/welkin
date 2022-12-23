@@ -1,9 +1,6 @@
 import React from "react";
-import {
-  DesktopDatePicker,
-  DesktopDatePickerProps,
-} from "@mui/x-date-pickers/DesktopDatePicker";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 // interface IDatePickerProps extends DesktopDatePickerProps {}
